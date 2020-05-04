@@ -164,5 +164,4 @@ void _addEvent(){
      // iFreameWinJsObj.callMethod(widget.methodName, [widget.resData]);
       //iFrame.contentWindow.postMessage('message', '*');
     });
-  } 
   }
