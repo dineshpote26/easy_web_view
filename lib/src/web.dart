@@ -121,7 +121,7 @@ class _EasyWebViewState extends State<EasyWebView> {
       }
       final element = _iframeElementMap[widget.key]
         ..style.border = '0'
-         ..style.id = 'testId'
+         ..id = 'testId'
         ..allow = 'microphone *;camera *'
         ..allowFullscreen = widget.webAllowFullScreen
         ..height = height.toInt().toString()
