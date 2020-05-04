@@ -1,5 +1,6 @@
 import 'dart:html' as html;
 import 'dart:ui' as ui;
+import 'dart:js' as js;
 
 import 'package:flutter/material.dart';
 
@@ -122,9 +123,11 @@ class _EasyWebViewState extends State<EasyWebView> {
       var iFrameJsObj = new js.JsObject.fromBrowserObject(iFrame);
       var iFreameWinJsObj =
           new js.JsObject.fromBrowserObject(iFrameJsObj['contentWindow']);
+      
+      print('====iFreameWinJsObj===$iFreameWinJsObj');
       // iFreameWinJsObj.callMethod('init');
       // iFreameWinJsObj.callMethod(widget.resData);
-      iFreameWinJsObj.callMethod(widget.methodName, [widget.resData]);
+     // iFreameWinJsObj.callMethod(widget.methodName, [widget.resData]);
       //iFrame.contentWindow.postMessage('message', '*');
     });
   }
