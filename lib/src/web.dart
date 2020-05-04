@@ -98,6 +98,7 @@ class _EasyWebViewState extends State<EasyWebView> {
           );
         }
         _setup(src, w, h);
+        _addEvent();
         return AbsorbPointer(
           child: RepaintBoundary(
             child: HtmlElementView(
@@ -108,6 +109,14 @@ class _EasyWebViewState extends State<EasyWebView> {
         );
       },
     );
+  }
+  
+  void _addEvent(){
+    print("--------------_addEvent--------");
+    html.window.addEventListener("load", (event) => {
+     print("--------------load--------");
+    });
+    
   }
 
   static final _iframeElementMap = Map<Key, html.IFrameElement>();
