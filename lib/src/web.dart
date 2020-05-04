@@ -114,7 +114,7 @@ class _EasyWebViewState extends State<EasyWebView> {
   void _addEvent(){
     print("--------------_addEvent--------");
     html.window.addEventListener("load", (event) => {
-     print("--------------load--------");
+     print("load");
     });
     
   }
