@@ -111,29 +111,7 @@ class _EasyWebViewState extends State<EasyWebView> {
       },
     );
   }
-  
-  void _addEvent(){
-    print("--------------_addEvent--------");
-    html.window.addEventListener('message', (event) {
-      print('====message===$event');
-      var element = html.document.getElementsByTagName('flt-platform-view')[0]
-          as html.HtmlElement;
-      var iFrame = element.shadowRoot.getElementById('EasyWebView')
-          as html.IFrameElement;
-      var iFrameJsObj = new js.JsObject.fromBrowserObject(iFrame);
-      var iFreameWinJsObj =
-          new js.JsObject.fromBrowserObject(iFrameJsObj['contentWindow']);
-      
-      print('====iFreameWinJsObj===$iFreameWinJsObj');
-      // iFreameWinJsObj.callMethod('init');
-      // iFreameWinJsObj.callMethod(widget.resData);
-     // iFreameWinJsObj.callMethod(widget.methodName, [widget.resData]);
-      //iFrame.contentWindow.postMessage('message', '*');
-    });
-  }
-    
-  }
-
+ 
   static final _iframeElementMap = Map<Key, html.IFrameElement>();
 
   void _setup(String src, num width, num height) {
@@ -166,3 +144,25 @@ class _EasyWebViewState extends State<EasyWebView> {
     });
   }
 }
+
+
+void _addEvent(){
+    print("--------------_addEvent--------");
+    html.window.addEventListener('message', (event) {
+      print('====message===$event');
+      var element = html.document.getElementsByTagName('flt-platform-view')[0]
+          as html.HtmlElement;
+      var iFrame = element.shadowRoot.getElementById('EasyWebView')
+          as html.IFrameElement;
+      var iFrameJsObj = new js.JsObject.fromBrowserObject(iFrame);
+      var iFreameWinJsObj =
+          new js.JsObject.fromBrowserObject(iFrameJsObj['contentWindow']);
+      
+      print('====iFreameWinJsObj===$iFreameWinJsObj');
+      // iFreameWinJsObj.callMethod('init');
+      // iFreameWinJsObj.callMethod(widget.resData);
+     // iFreameWinJsObj.callMethod(widget.methodName, [widget.resData]);
+      //iFrame.contentWindow.postMessage('message', '*');
+    });
+  } 
+  }
