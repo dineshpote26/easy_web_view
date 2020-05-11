@@ -158,7 +158,7 @@ void _addEvent(){
       var iFreameWinJsObj =
           new js.JsObject.fromBrowserObject(iFrameJsObj['contentWindow']);
       
-      var button = iFreameWinJsObj.document.getElementsByClassName('toolbox-icon');
+      var button = iFreameWinJsObj.find('.toolbox-icon');
       
       print("button"$button);
       
