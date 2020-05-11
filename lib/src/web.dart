@@ -158,7 +158,11 @@ void _addEvent(){
       var iFreameWinJsObj =
           new js.JsObject.fromBrowserObject(iFrameJsObj['contentWindow']);
       
-      print('====iFreameWinJsObj===$iFreameWinJsObj');
+      var button = iFreameWinJsObj.document.getElementsByClassName('toolbox-icon');
+      
+      print("button"$button);
+      
+      //print('====iFreameWinJsObj===$iFreameWinJsObj');
       // iFreameWinJsObj.callMethod('init');
       // iFreameWinJsObj.callMethod(widget.resData);
      // iFreameWinJsObj.callMethod(widget.methodName, [widget.resData]);
