@@ -99,7 +99,6 @@ class _EasyWebViewState extends State<EasyWebView> {
           );
         }
         _setup(src, w, h);
-        _addEvent();
         return AbsorbPointer(
           child: RepaintBoundary(
             child: HtmlElementView(
