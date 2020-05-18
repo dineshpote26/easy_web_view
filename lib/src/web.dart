@@ -65,19 +65,6 @@ class _EasyWebViewState extends State<EasyWebView> {
   void initState() {
     super.initState();
     widget.onIFrameLoading(false);
-    functionEventListener = (Event event) {
-      print('====message===$event');
-      var element = html.document.getElementsByTagName('flt-platform-view')[0]
-      as html.HtmlElement;
-      var iFrame = element.shadowRoot.getElementById('EasyWebView')
-      as html.IFrameElement;
-      var iFrameJsObj = new js.JsObject.fromBrowserObject(iFrame);
-      var iFreameWinJsObj = new js.JsObject.fromBrowserObject(iFrameJsObj['contentWindow']);
-      if(iFreameWinJsObj!=null){
-        print('====iFreameWinJsObj===$iFreameWinJsObj');
-        widget.onIFrameLoading(true);
-      }
-    };
   }
 
   @override
@@ -126,6 +113,7 @@ class _EasyWebViewState extends State<EasyWebView> {
           );
         }
         _setup(src, w, h);
+        _addEvent();
         return AbsorbPointer(
           child: RepaintBoundary(
             child: HtmlElementView(
@@ -169,24 +157,23 @@ class _EasyWebViewState extends State<EasyWebView> {
       return element;
     });
   }
+
+  void _addEvent(){
+    html.window.addEventListener('message', (event) {
+      var element = html.document.getElementsByTagName('flt-platform-view')[0]
+      as html.HtmlElement;
+      var iFrame = element.shadowRoot.getElementById('EasyWebView')
+      as html.IFrameElement;
+      var iFrameJsObj = new js.JsObject.fromBrowserObject(iFrame);
+      var iFreameWinJsObj = new js.JsObject.fromBrowserObject(iFrameJsObj['contentWindow']);
+      if(iFreameWinJsObj!=null){
+        print('====iFreameWinJsObj===$iFreameWinJsObj');
+        widget.onIFrameLoading(true);
+      }
+
+    });
+  }
 }
 
 
-void _addEvent(){
-    print("--------------_addEvent--------");
-    html.window.addEventListener('message', (event) {
-      print('====message===$event');
-      var element = html.document.getElementsByTagName('flt-platform-view')[0]
-          as html.HtmlElement;
-      var iFrame = element.shadowRoot.getElementById('EasyWebView')
-          as html.IFrameElement;
-      var iFrameJsObj = new js.JsObject.fromBrowserObject(iFrame);
-      var iFreameWinJsObj =
-          new js.JsObject.fromBrowserObject(iFrameJsObj['contentWindow']);
-      //print('====iFreameWinJsObj===$iFreameWinJsObj');
-      // iFreameWinJsObj.callMethod('init');
-      // iFreameWinJsObj.callMethod(widget.resData);
-     // iFreameWinJsObj.callMethod(widget.methodName, [widget.resData]);
-      //iFrame.contentWindow.postMessage('message', '*');
-    });
-  }
+
