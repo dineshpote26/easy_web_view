@@ -3,6 +3,9 @@ import 'package:flutter/material.dart';
 import 'impl.dart';
 
 class EasyWebView extends StatefulWidget implements EasyWebViewImpl {
+
+  final Function(bool) onIFrameLoading;
+
   const EasyWebView({
     Key key,
     @required this.src,
@@ -13,6 +16,7 @@ class EasyWebView extends StatefulWidget implements EasyWebViewImpl {
     this.isMarkdown = false,
     this.convertToWidets = false,
     this.headers = const {},
+    this.onIFrameLoading,
     this.widgetsTextSelectable = false,
   })  : assert((isHtml && isMarkdown) == false),
         super(key: key);
@@ -46,6 +50,7 @@ class EasyWebView extends StatefulWidget implements EasyWebViewImpl {
 
   @override
   final bool widgetsTextSelectable;
+
 }
 
 class _EasyWebViewState extends State<EasyWebView> {

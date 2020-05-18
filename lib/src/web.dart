@@ -1,4 +1,5 @@
 import 'dart:html' as html;
+import 'dart:html';
 import 'dart:ui' as ui;
 import 'dart:js' as js;
 
@@ -7,6 +8,9 @@ import 'package:flutter/material.dart';
 import 'impl.dart';
 
 class EasyWebView extends StatefulWidget implements EasyWebViewImpl {
+
+  final Function(bool) onIFrameLoading;
+
   const EasyWebView({
     Key key,
     @required this.src,
@@ -17,6 +21,7 @@ class EasyWebView extends StatefulWidget implements EasyWebViewImpl {
     this.isMarkdown = false,
     this.convertToWidets = false,
     this.headers = const {},
+    this.onIFrameLoading,
     this.widgetsTextSelectable = false,
   })  : assert((isHtml && isMarkdown) == false),
         super(key: key);
@@ -53,6 +58,28 @@ class EasyWebView extends StatefulWidget implements EasyWebViewImpl {
 }
 
 class _EasyWebViewState extends State<EasyWebView> {
+
+  Function functionEventListener;
+
+  @override
+  void initState() {
+    super.initState();
+    widget.onIFrameLoading(false);
+    functionEventListener = (Event event) {
+      print('====message===$event');
+      var element = html.document.getElementsByTagName('flt-platform-view')[0]
+      as html.HtmlElement;
+      var iFrame = element.shadowRoot.getElementById('EasyWebView')
+      as html.IFrameElement;
+      var iFrameJsObj = new js.JsObject.fromBrowserObject(iFrame);
+      var iFreameWinJsObj = new js.JsObject.fromBrowserObject(iFrameJsObj['contentWindow']);
+      if(iFreameWinJsObj!=null){
+        print('====iFreameWinJsObj===$iFreameWinJsObj');
+        widget.onIFrameLoading(true);
+      }
+    };
+  }
+
   @override
   void didUpdateWidget(EasyWebView oldWidget) {
     if (oldWidget.height != widget.height) {

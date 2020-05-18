@@ -47,6 +47,9 @@ class EasyWebView extends StatefulWidget implements EasyWebViewImpl {
 
   @override
   final bool widgetsTextSelectable;
+
+  @override
+  Function(bool p1) get onIFrameLoading => onIFrameLoading;
 }
 
 class _EasyWebViewState extends State<EasyWebView> {
