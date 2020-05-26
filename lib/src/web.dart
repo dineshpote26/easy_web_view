@@ -139,7 +139,6 @@ class _EasyWebViewState extends State<EasyWebView> {
         ..style.border = '0'
          ..id = 'EasyWebView'
         ..allow = 'microphone *;camera *'
-        ..sandbox = 'allow-top-navigation'
         ..allowFullscreen = widget.webAllowFullScreen
         ..height = height.toInt().toString()
         ..width = width.toInt().toString();
